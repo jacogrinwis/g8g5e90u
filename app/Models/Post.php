@@ -12,6 +12,7 @@ class Post extends Model
         'excerpt',
         'content',
         'category_id',
+        'status',
     ];
 
     public function category()
