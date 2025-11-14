@@ -12,7 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\MarkdownEditor;
 use Filament\Schemas\Components\Utilities\Set;
 use Filament\Forms\Components\ModalTableSelect;
-use App\Filament\Resources\Categories\Tables\CategoriesTable;
+use App\Filament\Tables\CategoriesTable;
 
 class PostForm
 {
