@@ -38,7 +38,6 @@ class PostForm
                     ->required()
                     ->maxLength(255)
                     ->reactive()
-                    // ->disabled()
                     ->hint(fn($state) => strlen($state) . '/255'),
 
                 MarkdownEditor::make('content')
@@ -53,10 +52,6 @@ class PostForm
                     ->reactive()
                     ->hint(fn($state) => strlen($state) . '/255'),
 
-                // Radio::make('status')
-                //     ->label('Status')
-                //     ->options(PostStatusEnum::class),
-
                 Radio::make('status')
                     ->label('Status')
                     ->options(
@@ -66,9 +61,9 @@ class PostForm
                             ])
                     ),
 
-                // Select::make('tags')
-                //     ->relationship('tags', 'name')
-                //     ->multiple(),
+                Select::make('tags')
+                    ->relationship('tags', 'name')
+                    ->multiple(),
             ]);
     }
 }
