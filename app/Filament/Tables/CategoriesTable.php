@@ -13,16 +13,24 @@ class CategoriesTable
     public static function configure(Table $table): Table
     {
         return $table
-            ->query(fn (): Builder => Category::query())
+            ->query(fn(): Builder => Category::query())
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+
                 TextColumn::make('slug')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
+                TextColumn::make('description')
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
