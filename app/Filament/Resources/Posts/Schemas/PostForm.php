@@ -21,6 +21,8 @@ class PostForm
         return $schema
             ->components([
                 ModalTableSelect::make('category_id')
+                    ->label('Categorie')
+                    ->helperText('Kies een categorie voor deze post. ')
                     ->relationship('category', 'name')
                     ->tableConfiguration(CategoriesTable::class)
                     ->columnSpanFull(),
@@ -35,6 +37,7 @@ class PostForm
 
                 TextInput::make('slug')
                     ->label('Slug')
+                    ->helperText('Wordt automatisch aangemaakt op basis van de titel, maar kan handmatig aangepast worden.')
                     ->required()
                     ->maxLength(255)
                     ->reactive()
@@ -45,7 +48,8 @@ class PostForm
                     ->columnSpanFull(),
 
                 Textarea::make('excerpt')
-                    ->label('Korte tekst')
+                    ->label('Samenvatting')
+                    ->helperText('Optioneel veld voor een korte samenvatting. Als je niets invult, wordt automatisch de eerste 255 tekens van de content gebruikt.')
                     ->maxLength(255)
                     ->rows(5)
                     ->columnSpanFull()
@@ -59,9 +63,13 @@ class PostForm
                             ->mapWithKeys(fn($case) => [
                                 $case->value => ucfirst($case->value)
                             ])
-                    ),
+                    )
+                    ->required()
+                    ->columnSpanFull(),
 
                 Select::make('tags')
+                    ->label('Tags')
+                    ->helperText('Kies één of meerdere tags voor deze post.')
                     ->relationship('tags', 'name')
                     ->multiple(),
             ]);
